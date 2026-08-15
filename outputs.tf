@@ -8,7 +8,7 @@ output "vpclattice_target_groups_arn" {
 }
 output "vpclattice_target_groups_config" {
   description = "Map of config values across all vpclattice_target_groups, keyed the same as var.vpclattice_target_groups"
-  value       = { for k, v in aws_vpclattice_target_group.vpclattice_target_groups : k => v.config if v.config != null && length(v.config) > 0 }
+  value       = { for k, v in aws_vpclattice_target_group.vpclattice_target_groups : k => one(v.config) if v.config != null && length(v.config) > 0 }
 }
 output "vpclattice_target_groups_name" {
   description = "Map of name values across all vpclattice_target_groups, keyed the same as var.vpclattice_target_groups"
